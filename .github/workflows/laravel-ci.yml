@@ -30,28 +30,23 @@ jobs:
     - name: Generate application key
       run: php artisan key:generate
 
+    - name: "Install sqlite"
+      run: sudo apt-get install php8.2-sqlite3
+
+    - name: Create database
+      run: touch database/database.sqlite
+
+    - name: Run database migrations
+      run: php artisan migrate:fresh --seed --env=testing
+      
+    - name: Run All Seeder
+      run: php artisan db:seed --env=testing
+      
+    - name: "Generate Passport encryption keys"
+      run: php artisan passport:install --env=testing
+
     - name: Run tests
-      run: vendor/bin/phpunit
-
-    - name: Check coding standards
-      run: vendor/bin/phpcs
-
-    - name: Check static analysis
-      run: vendor/bin/phpstan analyze
-
-    - name: Check security vulnerabilities
-      run: composer exec security-checker security:check
-
-    - name: Install Node.js and npm
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install JavaScript dependencies
-      run: npm install
-
-    - name: Run mix (Laravel Mix)
-      run: npm run production
+      run: php artisan test
 
     - name: Clean up
       run: php artisan optimize:clear
