@@ -19,10 +19,10 @@ jobs:
         php-version: '8.0'
 
     - name: Update dependencies
-     run: composer update --prefer-dist --no-progress --no-suggest
+      run: composer update --prefer-dist --no-progress --no-suggest
 
-    # - name: Install dependencies
-    #   run: composer install --prefer-dist --no-progress --no-suggest
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Copy environment file
       run: cp .env.example .env
