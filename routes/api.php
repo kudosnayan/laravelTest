@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -25,8 +26,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/contact-us', function (Request $request) {
 
     return new JsonResponse([
-        'data'=>$request->all(),
+        'data' => $request->all(),
         'status' => 'success',
         'message' => __('auth.password'),
     ], Response::HTTP_OK);
 });
+
+
+Route::get('users/{id}', [UserController::class, 'showProfile']);
