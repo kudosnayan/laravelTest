@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -29,4 +30,10 @@ Route::post('/contact-us', function (Request $request) {
         'status' => 'success',
         'message' => __('auth.password'),
     ], Response::HTTP_OK);
+});
+
+
+Route::group(['prefix' => 'user'], function ($router) {
+    Route::post('create', [UserController::class, 'create'])->name('user-create');
+    Route::get('list', [UserController::class, 'list'])->name('user-list');
 });
