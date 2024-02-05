@@ -8,15 +8,22 @@
         "php": "^8.1",
         "barryvdh/laravel-cors": "dev-develop",
         "doctrine/dbal": "^3.0",
+        "filament/filament": "3.1",
+        "google/apiclient": "^2.15",
         "guzzlehttp/guzzle": "^7.8",
+        "inertiajs/inertia-laravel": "^0.6.3",
         "ixudra/curl": "^6.22",
         "laravel/framework": "^10.0",
         "laravel/passport": "^11.0",
-        "laravel/sanctum": "^3.2"
+        "laravel/sanctum": "^3.2",
+        "maatwebsite/excel": "^3.1",
+        "predis/predis": "^2.2",
+        "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
-        "nunomaduro/collision": "^6.1",
-        "pestphp/pest": "^1.23",
+        "nunomaduro/collision": "^7.9.0",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
@@ -34,7 +41,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
