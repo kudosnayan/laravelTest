@@ -33,4 +33,7 @@ Route::post('/contact-us', function (Request $request) {
 });
 
 
-Route::get('users/{id}', [UserController::class, 'showProfile']);
+Route::group(['prefix' => 'user'], function ($router) {
+    Route::post('create', [UserController::class, 'create'])->name('user-create');
+    Route::get('list', [UserController::class, 'list'])->name('user-list');
+});
